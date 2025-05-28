@@ -4,7 +4,6 @@ import { createSong } from "../controller/admin.controller.js";
 
 const adminRoutes = Router();
 
-adminRoutes.get("/", protectRoute, requestAdmin, createSong)
+adminRoutes.get("/songs", protectRoute, requestAdmin, createSong)
 
 export default adminRoutes;
-import { clerkMiddleware } from "@clerk/express";
