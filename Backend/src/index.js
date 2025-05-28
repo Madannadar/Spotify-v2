@@ -1,12 +1,16 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import { connectDB } from './lib/db.js';
+
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
 import adminRoutes from './routes/admin.route.js';
 import songRoutes from './routes/song.route.js';
 import albumRoutes from './routes/album.route.js';
 import statusRoutes from './routes/status.route.js';
+
 dotenv.config();
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
