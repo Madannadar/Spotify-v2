@@ -20,7 +20,9 @@ const __dirname = path.resolve();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json()); // Middleware to parse JSON bodies
-app.use(clerkMiddleware()); // this will add auth to req obj => will let me do req.auth.userId to get the user id of the logged in user
+app.use(clerkMiddleware({
+    publishableKey: process.env.VITE_CLERK_PUBLISHABLE_KEY
+})); // this will add auth to req obj => will let me do req.auth.userId to get the user id of the logged in user
 app.use(fileUpload(
     {
         useTempFiles: true, // Use temporary files for uploads
