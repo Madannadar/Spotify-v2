@@ -1,6 +1,6 @@
 import User from "../model/user.model.js";
 
-const authCallback = async (req, res, next) => {
+export const authCallback = async (req, res, next) => {
     try {
         const {id, firstName, lastName, imageUrl} = req.body;
 
@@ -10,8 +10,8 @@ const authCallback = async (req, res, next) => {
         if(!user){
             await User.create({
                 clerkId: id,
-                fullName: `${firstName} ${lastName}`,
-                imageUrl
+                fullName: `${firstName} ${lastName}`.trim(),
+                imageUrl,
             })
         }
         res.status(200).json({
@@ -26,5 +26,3 @@ const authCallback = async (req, res, next) => {
         
     }
 }
-
-export { authCallback };
