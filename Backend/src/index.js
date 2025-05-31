@@ -41,6 +41,11 @@ app.use("/api/songs", songRoutes);
 app.use("/api/album", albumRoutes);
 app.use("/api/status", statusRoutes);
 
+app.use((err, req, res, next) => {
+    console.error(err.stack); // Log the error stack trace
+    res.status(500).json({ message: process.env.NODE_ENV === "production" ? "Internal server error": err.message}); // Send a generic error response
+})
+
 app.listen(5000, () => {
     console.log(`Server is running on port ${PORT}`);
 })

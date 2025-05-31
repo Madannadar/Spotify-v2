@@ -27,6 +27,6 @@ export const requestAdmin = async(req, res, next) => {
 
     } catch (error) {
         console.error("Error in admin route:", error);
-        res.status(500).send("Internal Server Error");
+        next(error);
     }
 }

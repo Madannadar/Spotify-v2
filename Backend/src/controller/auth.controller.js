@@ -1,6 +1,6 @@
 import User from "../model/user.model.js";
 
-const authCallback = async (req, res) => {
+const authCallback = async (req, res, next) => {
     try {
         const {id, firstName, lastName, imageUrl} = req.body;
 
@@ -22,7 +22,7 @@ const authCallback = async (req, res) => {
 
     } catch (error) {
         console.error("Error in auth route:", error);
-        res.status(500).send("Internal Server Error");
+        next(error);
         
     }
 }
