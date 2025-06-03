@@ -1,13 +1,14 @@
+import { axiosInstance } from "@/lib/axios";
 import { useAuth } from "@clerk/clerk-react"
-import axios from "axios";
+// import axios from "axios";
 import { Loader } from "lucide-react";
 import { useEffect, useState } from "react"
 
 const updateApiToken = (token: string | null) => {
     if (token) {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     } else {
-        delete axios.defaults.headers.common['Authorization'];
+        delete axiosInstance.defaults.headers.common['Authorization'];
     }
 }
 
@@ -22,6 +23,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 updateApiToken(token);
 
             } catch (error) {
+                updateApiToken(null);
                 console.error("Error initializing auth:", error)
             } finally {
                 setloading(false);

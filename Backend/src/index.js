@@ -27,7 +27,7 @@ app.use(cors({
 
 app.use(express.json()); // Middleware to parse JSON bodies
 app.use(clerkMiddleware({
-    publishableKey: process.env.VITE_CLERK_PUBLISHABLE_KEY
+    publishableKey: process.env.CLERK_PUBLISHABLE_KEY
 })); // this will add auth to req obj => will let me do req.auth.userId to get the user id of the logged in user
 app.use(fileUpload(
     {
@@ -41,7 +41,7 @@ app.use(fileUpload(
 ))
 
 app.use("/api/users", userRoutes);
-app.use("/api/auth", authRoutes);
+app.use("/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/songs", songRoutes);
 app.use("/api/album", albumRoutes);
