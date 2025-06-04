@@ -62,7 +62,7 @@ const LeftSidebar = () => {
                         ) : (
                             albums.map((album) => (
                                 <Link to={`/album/${album._id}`}
-                                    key={album.id}
+                                    key={album._id}
                                     className={cn(buttonVariants())}
                                 >
                                     <img src={album.imageUrl} alt="playlist image" className='size-12 rounded-md flex-shrink-0 object-cover' />
